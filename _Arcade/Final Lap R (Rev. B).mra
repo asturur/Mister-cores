@@ -1,0 +1,621 @@
+<!--          FPGA arcade hardware by Jotego
+
+              This core is available for hardware compatible with MiST and MiSTer
+              Other FPGA systems may be supported by the time you read this.
+              This work is not mantained by the MiSTer project. Please contact the
+              core author for issues and updates.
+
+              (c) Jose Tejada, 2026. Please support this research
+              Patreon: https://patreon.com/jotego
+
+              The author does not endorse or participate in illegal distribution
+              of copyrighted material. This work can be used with compatible
+              software. This software can be homebrew projects or legally
+              obtained memory dumps of compatible games.
+
+              This file license is GNU GPLv2.
+              You can read the whole license file in
+              https://opensource.org/licenses/gpl-2.0.php
+
+-->
+
+<misterromdescription>
+    <about author="jotego" webpage="https://patreon.com/jotego" twitter="@topapate" source="https://jotego/jtcores"/>
+    <rotation>horizontal</rotation>
+    <name>Final Lap R (Rev. B)</name>
+    <setname>finalapr</setname>
+    <mameversion>0282</mameversion>
+    <year>1994</year>
+    <manufacturer>Namco</manufacturer>
+    <players>1</players>
+    <rbf>jtsysfl</rbf>
+    <joystick/>
+    <region>World</region>
+    <rom index="0" zip="finalapr.zip|namcoc75.zip" md5="None" address="0x30000000">
+        <!-- 
+  0[0]: flr        Final Lap R cabinet: brake pedal on ADC an6 -->
+        <part>
+            01 00 00 00 00 00 00 00
+        </part>
+        <!-- maincpu - starts at 0x0 - length 0x400000 (22 bits) -->
+        <interleave output="32">
+            <part name="flr2_mp_eb.19a" crc="8bfe615f" map="0021"/>
+            <part name="flr2_mp_ob.18a" crc="91c14e4f" map="2100"/>
+        </interleave>
+        <part repeat="0x300000"> FF</part>
+        <!-- SCR_START -->
+        <!-- c123tmap - starts at 0x400000 - length 0x400000 (22 bits) -->
+        <part name="flr1_sch0.21p" crc="7169efca"/>
+        <part name="flr1_sch1.20p" crc="aa233a02"/>
+        <part name="flr1_sch2.19p" crc="9b6b7abd"/>
+        <part name="flr1_sch3.18p" crc="50a14f54"/>
+        <!-- JTFRAME_BA1_START -->
+        <!-- c355spr - starts at 0x800000 - length 0x800000 (23 bits) -->
+        <interleave output="32">
+            <part name="flr1_obj0l.ic1" crc="364a902c" map="0021"/>
+            <part name="flr1_obj0u.ic2" crc="a5c7b80e" map="2100"/>
+        </interleave>
+        <interleave output="32">
+            <part name="flr1_obj1l.ic3" crc="51fd8de7" map="0021"/>
+            <part name="flr1_obj1u.ic4" crc="1737aa3c" map="2100"/>
+        </interleave>
+        <!-- JTFRAME_BA2_START -->
+        <!-- c169roz - starts at 0x1000000 - length 0x400000 (22 bits) -->
+        <part name="flr1_rch0.19j" crc="f413f50d"/>
+        <part name="flr1_rch1.18j" crc="4654d519"/>
+        <part repeat="0x200000"> FF</part>
+        <!-- SMASK_START -->
+        <!-- c123tmap:mask - starts at 0x1400000 - length 0x80000 (19 bits) -->
+        <part name="flr1_ssh.18u" crc="f70cb2bf"/>
+        <!-- C75BIOS_START -->
+        <!-- c75 - starts at 0x1480000 - length 0x80000 (19 bits) -->
+        <part name="c75.bin" crc="42f539a5"/>
+        <part repeat="0x7C000"> FF</part>
+        <!-- MCUROM_START -->
+        <!-- c75data - starts at 0x1500000 - length 0x100000 (20 bits) -->
+        <part name="flr1_spr.21l" crc="69bb0f5e"/>
+        <part repeat="0xE0000"> FF</part>
+        <!-- RMASK_START -->
+        <!-- c169roz:mask - starts at 0x1600000 - length 0x200000 (21 bits) -->
+        <part name="flr1_rsh.14k" crc="037c0983"/>
+        <part repeat="0x180000"> FF</part>
+        <!-- JTFRAME_BA3_START -->
+        <!-- c352 - starts at 0x1800000 - length 0x5A0000 (23 bits) -->
+        <part name="flr1_voi.23s" crc="ff6077cd"/>
+        <part repeat="0x3A0000"> FF</part>
+        <!-- ROZB_START -->
+        <!-- rozb - starts at 0x1DA0000 - length 0x200000 (21 bits) -->
+        <part name="flr1_rch0.19j" crc="f413f50d"/>
+        <part name="flr1_rch1.18j" crc="4654d519"/>
+        <!-- Total 0x1FA0000 bytes - 32384 kBytes -->
+        <!-- Adding 8 bytes to the patch offset to make up for the MRA header -->
+        <patch offset="0x1D00008">00 00 80 01 01 01 01 01 00 01 04 01 00 00 01 56 31 33 36 3a 46 4c 52 00 0e 10 41 42 43 00 0e 10 41 42 43 00 0e 10 41 42 43 00 0e 10 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 26 f4 53 48 49 00 27 25 59 4f 33 00 28 1a 53 53 53 00 28 e3 43 43 4a 00 28 d0 49 4e 4f 00 28 71 54 41 4e 00 28 96 54 42 59 00 27 4f 4d 45 47 00 26 ec 4d 44 57 00 26 fd 41 43 41 00 27 52 54 41 4b 00 26 fb 4d 53 4b 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 25 68 4e 49 53 00 26 e9 50 49 4e 00 26 6e 45 44 49 00 26 07 53 48 4f 00 26 04 4b 31 33 00 25 f5 4f 4e 49 00 25 aa 54 41 5a 00 26 33 49 5a 41 00 26 e0 53 49 42 00 26 41 31 34 31 00 25 26 54 45 4e 00 25 9f 59 4f 31 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 25 fc 43 41 4b 00 25 cd 4d 41 5a 00 26 e2 4b 41 4f 00 26 4b 48 46 59 00 25 58 31 30 4c 00 26 99 4a 55 4e 00 26 de 54 2e 53 00 26 37 48 4f 43 00 26 f4 54 4f 4b 00 26 a5 41 43 50 00 25 1a 4a 39 43 00 25 63 42 41 4b 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00 29 a0 4e 4f 55 00 28 c1 50 43 42 00 28 66 54 52 4a 00 28 9f 41 41 41 00 29 bc 53 2e 53 00 29 4d 57 41 4b 00 29 22 46 55 43 00 28 4b 47 41 41 00 28 18 42 45 4e 00 29 19 59 41 4d 00 28 1e 4d 41 53 00 29 37 4e 41 4b 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff</patch>
+    </rom>
+    <rom index="2">
+        <part>
+00 00 80 01 01 01 01 01 00 01 04 01 00 00 01 56
+31 33 36 3A 46 4C 52 00 0E 10 41 42 43 00 0E 10
+41 42 43 00 0E 10 41 42 43 00 0E 10 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 26 F4 53 48 49 00 27 25
+59 4F 33 00 28 1A 53 53 53 00 28 E3 43 43 4A 00
+28 D0 49 4E 4F 00 28 71 54 41 4E 00 28 96 54 42
+59 00 27 4F 4D 45 47 00 26 EC 4D 44 57 00 26 FD
+41 43 41 00 27 52 54 41 4B 00 26 FB 4D 53 4B 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 25 68 4E 49 53 00 26 E9
+50 49 4E 00 26 6E 45 44 49 00 26 07 53 48 4F 00
+26 04 4B 31 33 00 25 F5 4F 4E 49 00 25 AA 54 41
+5A 00 26 33 49 5A 41 00 26 E0 53 49 42 00 26 41
+31 34 31 00 25 26 54 45 4E 00 25 9F 59 4F 31 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 25 FC 43 41 4B 00 25 CD
+4D 41 5A 00 26 E2 4B 41 4F 00 26 4B 48 46 59 00
+25 58 31 30 4C 00 26 99 4A 55 4E 00 26 DE 54 2E
+53 00 26 37 48 4F 43 00 26 F4 54 4F 4B 00 26 A5
+41 43 50 00 25 1A 4A 39 43 00 25 63 42 41 4B 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 54 60 41 42 43 00 54 60
+41 42 43 00 54 60 41 42 43 00 54 60 41 42 43 00
+54 60 41 42 43 00 54 60 41 42 43 00 54 60 41 42
+43 00 54 60 41 42 43 00 29 A0 4E 4F 55 00 28 C1
+50 43 42 00 28 66 54 52 4A 00 28 9F 41 41 41 00
+29 BC 53 2E 53 00 29 4D 57 41 4B 00 29 22 46 55
+43 00 28 4B 47 41 41 00 28 18 42 45 4E 00 29 19
+59 41 4D 00 28 1E 4D 41 53 00 29 37 4E 41 4B 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+</part>
+    </rom>
+    <nvram index="2" size="8192"/>
+    <rom index="1">
+        <part>00 80</part>
+    </rom>
+    <switches page_id="1" page_name="Switches" base="16" default="ff,ff">
+        <IN1/>
+        <dip name="Freeze Screen" bits="5" ids="On,Off"/>
+        <MISC/>
+        <dip name="Service Mode" bits="12" ids="On,Off"/>
+    </switches>
+    <buttons names="Gas,Weapon 1,Weapon 2,Weapon 3 / Shifter,Start,Coin,Core credits" default="A,B,X,Y,Start,Select,-" count="4"/>
+</misterromdescription>
