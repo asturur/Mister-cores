@@ -32,6 +32,11 @@ That branch contains either the exact source for this core or a newer version th
 
 ## Cores in this Repo
 
+### JTSVOLLE
+Covers
+- Super Volley
+- Rabio Lepus / Rabbit Punch ( not included to do not clash with a duplicate )
+
 ### JTPSPIKE
 Covers
 - Power Spikes / Super Volley '91

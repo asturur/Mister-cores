@@ -1,0 +1,98 @@
+<!--          FPGA arcade hardware by Jotego
+
+              This core is available for hardware compatible with MiST and MiSTer
+              Other FPGA systems may be supported by the time you read this.
+              This work is not mantained by the MiSTer project. Please contact the
+              core author for issues and updates.
+
+              (c) Jose Tejada, 2026. Please support this research
+              Patreon: https://patreon.com/jotego
+
+              The author does not endorse or participate in illegal distribution
+              of copyrighted material. This work can be used with compatible
+              software. This software can be homebrew projects or legally
+              obtained memory dumps of compatible games.
+
+              This file license is GNU GPLv2.
+              You can read the whole license file in
+              https://opensource.org/licenses/gpl-2.0.php
+
+-->
+
+<misterromdescription>
+    <about author="Andrea Bogazzi" webpage="https://patreon.com/jotego" twitter="@topapate" source="https://jotego/jtcores"/>
+    <rotation>horizontal</rotation>
+    <name>Super Volleyball (US)</name>
+    <setname>svolleyua</setname>
+    <mameversion>0282</mameversion>
+    <year>1989</year>
+    <manufacturer>V-System Co.</manufacturer>
+    <players>2</players>
+    <rbf>jtsvolle</rbf>
+    <joystick>8</joystick>
+    <region>World</region>
+    <rom index="0" zip="svolleyua.zip|svolley.zip" md5="None" address="0x30000000">
+        <!--  -->
+        <part>
+            00 00 00 00 </part>
+        <!-- maincpu - starts at 0x0 - length 0x80000 (19 bits) -->
+        <interleave output="16">
+            <part name="l0.ic136" crc="b1f5a54c" map="01"/>
+            <part name="h0.ic137" crc="58cfa5d7" map="10"/>
+        </interleave>
+        <interleave output="16">
+            <part name="l1.ic126" crc="55cfabce" map="01"/>
+            <part name="h1.ic127" crc="3c9721ff" map="10"/>
+        </interleave>
+        <part repeat="0x10000"> FF</part>
+        <part repeat="0x40000"> FF</part>
+        <!-- JTFRAME_BA1_START -->
+        <!-- tiles1 - starts at 0x80000 - length 0x80000 (19 bits) -->
+        <interleave output="16">
+            <part name="lh532099.ic46" crc="9428cc36" map="12"/>
+        </interleave>
+        <part name="7.ic35" crc="83b20b91"/>
+        <part repeat="0x30000"> FF</part>
+        <!-- SCR1_START -->
+        <!-- tiles2 - starts at 0x100000 - length 0x80000 (19 bits) -->
+        <interleave output="16">
+            <part name="lh53200a.ic47" crc="75930468" map="12"/>
+        </interleave>
+        <part name="10.ic36" crc="414a6278"/>
+        <part repeat="0x30000"> FF</part>
+        <!-- JTFRAME_BA2_START -->
+        <!-- sprites - starts at 0x180000 - length 0x80000 (19 bits) -->
+        <part name="lh5320h7.ic51" crc="152ff5b6"/>
+        <part repeat="0x20000"> FF</part>
+        <interleave output="16">
+            <part name="s0.ic18" crc="4d6c8f0c" map="01"/>
+            <part name="s1.ic43" crc="9dd28b42" map="10"/>
+        </interleave>
+        <part repeat="0x10000"> FF</part>
+        <!-- JTFRAME_BA3_START -->
+        <!-- audiocpu - starts at 0x200000 - length 0x10000 (16 bits) -->
+        <part name="1.ic112" crc="48b89688"/>
+        <!-- PCM_START -->
+        <!-- upd - starts at 0x210000 - length 0x40000 (18 bits) -->
+        <part name="4.ic114" crc="c4effee6"/>
+        <part name="3.ic123" crc="5a818eb4"/>
+        <part name="2.ic133" crc="f33f415f"/>
+        <part repeat="0x10000"> FF</part>
+        <!-- Total 0x250000 bytes - 2368 kBytes -->
+    </rom>
+    <rom index="1">
+        <part>00 80</part>
+    </rom>
+    <switches page_id="1" page_name="Switches" base="16" default="00,40">
+        <DSW/>
+        <dip name="Coin A" bits="0,3" ids="1/1,-,4/5,5/6,1/6,6/4,2/3,-,1/2,1/3,1/4,1/5,2/1,3/1,-,-"/>
+        <dip name="Coin B" bits="4,7" ids="1/1,-,4/5,5/6,1/6,6/4,2/3,-,1/2,1/3,1/4,1/5,2/1,3/1,-,-"/>
+        <dip name="Game Time" bits="8" ids="3 min/1.5 min,2 min/1 min"/>
+        <dip name="2P Start Score" bits="9,10" ids="7-7,9-9,5-5,0-0"/>
+        <dip name="1P Start Score" bits="11,12" ids="11-11,10-11,9-11,10-10"/>
+        <dip name="Service Mode" bits="13" ids="Off,On"/>
+        <dip name="Demo Sounds" bits="14" ids="Off,On"/>
+        <dip name="Flip Screen" bits="15" ids="Off,On"/>
+    </switches>
+    <buttons names="Button 1,Button 2,Start,Coin,Core credits" default="A,B,Start,Select,-" count="2"/>
+</misterromdescription>
