@@ -8,17 +8,35 @@ The intent of those cores is still to be hardware verified and when it happens t
 You can find the source for all those cores in a branch of jotego repo 'andrea-cores'
 If some of those is not there, open an issue i have to probably recover it from another branch and move it there for organization purposes.
 
-### Cores in this Repo
+All cores are open source and the source is stored here:
+https://github.com/jotego/jtcores/commits/andrea-cores
+That branch contains either the exact source for this core or a newer version that is not published yet.
 
+## Cores in this Repo
 
-### Installation
-You can either:
-- [Download the repo specific ini file](https://github.com/TheJesusFish/Slop-Core/releases/tag/202607) and place it in your MiSTer's /media/fat directory. Update and Update_All will grab the cores the next time you run them.
+### JTPSPIKE
+Covers
+- Power Spikes / Super Volley '91
+- Turbo Force
+- AeroFighters / Sonic Wing ( in alternatives folder )
+- Karate Blazers
+
+### JTF1GRPR
+Covers
+- Formula 1 Grand Prix
+
+### JTROUNDU
+Covers
+- Round Up 5
+
+## Installation
 - Add the below line to your `downloader.ini`. After doing that, Update and Update_All will grab the cores the next time you run them.
 
 ```ini
 [asturur/Mister-cores]
 db_url = https://raw.githubusercontent.com/asturur/Mister-cores/db/db.json.zip
 ```
+
+This picture comes from TheJesusFish repo and i find it appropriate so i left it here
 
 ![](https://i.imgur.com/gOLGQSJ.jpeg)
