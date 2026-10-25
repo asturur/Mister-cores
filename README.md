@@ -29,6 +29,11 @@ Covers
 Covers
 - Round Up 5
 
+### JTSYSFL
+Covers
+- Final lap R
+- Speed Racer
+
 ## Installation
 - Add the below line to your `downloader.ini`. After doing that, Update and Update_All will grab the cores the next time you run them.
 
