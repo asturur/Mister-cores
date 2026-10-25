@@ -18,6 +18,7 @@ What should always work via jtframe conventions is:
 The intent of those cores is still to be hardware verified and when it happens they get removed from here and become part of jtcores.
 
 Also those cores are multiplatform you can find the version for
+- mister
 - sidi
 - mist
 - sidi128
