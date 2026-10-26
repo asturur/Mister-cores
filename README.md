@@ -65,6 +65,16 @@ Covers
 db_url = https://raw.githubusercontent.com/asturur/Mister-cores/db/db.json.zip
 ```
 
+## Funding
+
+If you considered sponsor this project i prefer you sponsor [jotego](https://github.com/jotego/jtcores) that is the source of the modules and framework for those cores to be possible.
+If you are already a sponsor of jotego and you still want to sponsor the efforts, consider sponsoring [Zaparoo](https://github.com/ZaparooProject) that is what made me start developing in this space.
+Sponsoring those projects in the long term is more beneficial in my opinion.
+
+If you really want to give me something as a token of gratitude i have a sponsor button in my profile too.
+
+
+
 This picture comes from TheJesusFish repo and i find it appropriate so i left it here
 
 ![](https://i.imgur.com/gOLGQSJ.jpeg)
