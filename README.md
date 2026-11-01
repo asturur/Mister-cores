@@ -32,6 +32,10 @@ That branch contains either the exact source for this core or a newer version th
 
 ## Cores in this Repo
 
+### JTCRSHRC
+Covers
+- Letal Crash Race
+
 ### JTSVOLLE
 Covers
 - Super Volley
@@ -48,9 +52,17 @@ Covers
 Covers
 - Formula 1 Grand Prix
 
+### JTF1GPR2
+Covers
+- Formula 1 Grand Prix Part ||
+
 ### JTROUNDU
 Covers
 - Round Up 5
+
+### JTAPACH3
+Covers
+- Apache 3
 
 ### JTSYSFL
 Covers

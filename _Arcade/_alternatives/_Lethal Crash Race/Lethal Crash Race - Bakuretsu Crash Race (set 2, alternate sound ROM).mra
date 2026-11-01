@@ -1,0 +1,94 @@
+<!--          FPGA arcade hardware by Jotego
+
+              This core is available for hardware compatible with MiST and MiSTer
+              Other FPGA systems may be supported by the time you read this.
+              This work is not mantained by the MiSTer project. Please contact the
+              core author for issues and updates.
+
+              (c) Jose Tejada, 2026. Please support this research
+              Patreon: https://patreon.com/jotego
+
+              The author does not endorse or participate in illegal distribution
+              of copyrighted material. This work can be used with compatible
+              software. This software can be homebrew projects or legally
+              obtained memory dumps of compatible games.
+
+              This file license is GNU GPLv2.
+              You can read the whole license file in
+              https://opensource.org/licenses/gpl-2.0.php
+
+-->
+
+<misterromdescription>
+    <about author="andrea bogazzi" webpage="https://patreon.com/jotego" twitter="@topapate" source="https://jotego/jtcores"/>
+    <rotation>vertical (ccw)</rotation>
+    <name>Lethal Crash Race - Bakuretsu Crash Race (set 2, alternate sound ROM)</name>
+    <setname>crshrace2a</setname>
+    <mameversion>0282</mameversion>
+    <year>1993</year>
+    <manufacturer>Video System Co.</manufacturer>
+    <players>3</players>
+    <rbf>jtcrshrc</rbf>
+    <joystick>8</joystick>
+    <region>World</region>
+    <rom index="0" zip="crshrace2a.zip|crshrace.zip" md5="None">
+        <!--  -->
+        <part>
+            00 00 00 00 </part>
+        <!-- maincpu - starts at 0x0 - length 0x100000 (20 bits) -->
+        <part name="01.ic10" crc="b284aacd"/>
+        <part repeat="0x80000"> FF</part>
+        <!-- USER1_START -->
+        <!-- user1 - starts at 0x100000 - length 0x100000 (20 bits) -->
+        <part name="w21.ic14" crc="a5df7325"/>
+        <!-- USER2_START -->
+        <!-- user2 - starts at 0x200000 - length 0x100000 (20 bits) -->
+        <part name="w22.ic13" crc="fc9d666d"/>
+        <!-- FG_START -->
+        <!-- fg - starts at 0x300000 - length 0x100000 (20 bits) -->
+        <part name="h895.ic50" crc="36ad93c3"/>
+        <!-- JTFRAME_BA1_START -->
+        <!-- obj - starts at 0x400000 - length 0x400000 (22 bits) -->
+        <part name="h897.ic29" crc="e3230128"/>
+        <part name="h896.ic75" crc="fff60233"/>
+        <!-- JTFRAME_BA2_START -->
+        <!-- roz - starts at 0x800000 - length 0x400000 (22 bits) -->
+        <part name="w18.rom-a" crc="b15df90d"/>
+        <part name="w19.rom-b" crc="28326b93"/>
+        <part name="w20.rom-c" crc="d4056ad1"/>
+        <part repeat="0x100000"> FF</part>
+        <!-- SND_START -->
+        <!-- JTFRAME_BA3_START -->
+        <!-- snd - starts at 0xC00000 - length 0x20000 (17 bits) -->
+        <part name="2.ic58" crc="7ef4f9dc"/>
+        <!-- PCMA_START -->
+        <!-- pcma - starts at 0xC20000 - length 0x100000 (20 bits) -->
+        <part name="h893.ic69" crc="32513b63"/>
+        <!-- PCMB_START -->
+        <!-- pcmb - starts at 0xD20000 - length 0x100000 (20 bits) -->
+        <part name="h894.ic73" crc="d53300c1"/>
+        <!-- Total 0xE20000 bytes - 14464 kBytes -->
+    </rom>
+    <!-- Vertical screen. Orientation reversed. -->
+    <rom index="1">
+        <part>05 80</part>
+    </rom>
+    <switches page_id="1" page_name="Switches" base="16" default="ff,ff,ff,f1">
+        <DSW0/>
+        <dip name="Flip Screen" bits="0" ids="On,Off"/>
+        <dip name="Demo Sounds" bits="1" ids="Off,On"/>
+        <dip name="Free Play" bits="2" ids="On,Off"/>
+        <dip name="Service Mode" bits="3" ids="On,Off"/>
+        <dip name="Difficulty" bits="6,7" ids="Hardest,Hard,Easy,Normal"/>
+        <dip name="Coin Slot" bits="8" ids="Individual,Same"/>
+        <dip name="Coinage" bits="9,11" ids="1/6,1/5,1/4,1/3,1/2,3/1,2/1,1/1"/>
+        <dip name="Coin A" bits="9,11" ids="1/6,1/5,1/4,1/3,1/2,3/1,2/1,1/1"/>
+        <dip name="Coin B" bits="12,14" ids="1/6,1/5,1/4,1/3,1/2,3/1,2/1,1/1"/>
+        <dip name="2 to Start, 1 to Cont." bits="15" ids="On,Off"/>
+        <DSW1/>
+        <dip name="Reset on P.O.S.T. Error" bits="23" ids="No,Yes"/>
+        <DSW2/>
+        <dip name="Region" bits="24,27" ids="Japan,World,Korea,-,Hong Kong &amp; Taiwan,-,-,-,USA &amp; Canada,-,-,-,-,-,-,-"/>
+    </switches>
+    <buttons names="Accelerate,Brake,Horn,Start,Coin,Core credits" default="A,B,X,Start,Select,-" count="3"/>
+</misterromdescription>

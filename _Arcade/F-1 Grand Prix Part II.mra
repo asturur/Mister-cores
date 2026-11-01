@@ -1,0 +1,98 @@
+<!--          FPGA arcade hardware by Jotego
+
+              This core is available for hardware compatible with MiST and MiSTer
+              Other FPGA systems may be supported by the time you read this.
+              This work is not mantained by the MiSTer project. Please contact the
+              core author for issues and updates.
+
+              (c) Jose Tejada, 2026. Please support this research
+              Patreon: https://patreon.com/jotego
+
+              The author does not endorse or participate in illegal distribution
+              of copyrighted material. This work can be used with compatible
+              software. This software can be homebrew projects or legally
+              obtained memory dumps of compatible games.
+
+              This file license is GNU GPLv2.
+              You can read the whole license file in
+              https://opensource.org/licenses/gpl-2.0.php
+
+-->
+
+<misterromdescription>
+    <about author="andrea bogazzi" webpage="https://patreon.com/jotego" twitter="@topapate" source="https://jotego/jtcores"/>
+    <rotation>vertical (cw)</rotation>
+    <name>F-1 Grand Prix Part II</name>
+    <setname>f1gp2</setname>
+    <mameversion>0282</mameversion>
+    <year>1992</year>
+    <manufacturer>Video System Co.</manufacturer>
+    <players>1</players>
+    <rbf>jtf1gpr2</rbf>
+    <joystick>2</joystick>
+    <region>World</region>
+    <rom index="0" zip="f1gp2.zip" md5="None">
+        <!--  -->
+        <part>
+            00 00 00 00 00 00 00 00
+        </part>
+        <!-- maincpu - starts at 0x0 - length 0x100000 (20 bits) -->
+        <interleave output="16">
+            <part name="rom14.v2" crc="dd5388e2" map="01"/>
+            <part name="rom12.v1" crc="c5c5f199" map="10"/>
+        </interleave>
+        <part repeat="0xC0000"> FF</part>
+        <!-- USER1_START -->
+        <!-- user1 - starts at 0x100000 - length 0x200000 (21 bits) -->
+        <part name="rom2" crc="3b0cfa82" length="0x100000" offset="0x100000"/>
+        <part name="rom2" crc="3b0cfa82" length="0x100000"/>
+        <!-- FG_START -->
+        <!-- fg - starts at 0x300000 - length 0x200000 (21 bits) -->
+        <part name="rom1" crc="f2d55ad7"/>
+        <!-- JTFRAME_BA1_START -->
+        <!-- obj - starts at 0x500000 - length 0x200000 (21 bits) -->
+        <part name="rom15" crc="1ac03e2e"/>
+        <!-- JTFRAME_BA2_START -->
+        <!-- roz - starts at 0x700000 - length 0x400000 (22 bits) -->
+        <part name="rom11" crc="b22a2c1f"/>
+        <part name="rom10" crc="43fcbe23"/>
+        <part name="rom9" crc="1bede8a1"/>
+        <part name="rom8" crc="98baf2a1"/>
+        <!-- JTFRAME_BA3_START -->
+        <!-- SUB_START -->
+        <!-- sub - starts at 0xB00000 - length 0x20000 (17 bits) -->
+        <part name="rom13.v3" crc="c37aa303"/>
+        <!-- SND_START -->
+        <!-- snd - starts at 0xB20000 - length 0x20000 (17 bits) -->
+        <part name="rom5.v4" crc="6a9398a1"/>
+        <!-- PCMA_START -->
+        <!-- pcma - starts at 0xB40000 - length 0x100000 (20 bits) -->
+        <part name="rom3" crc="7f8f066f"/>
+        <!-- PCMB_START -->
+        <!-- pcmb - starts at 0xC40000 - length 0x80000 (19 bits) -->
+        <part name="rom4" crc="c2d3d7ad"/>
+        <!-- Total 0xCC0000 bytes - 13056 kBytes -->
+    </rom>
+    <!-- Vertical screen. -->
+    <rom index="1">
+        <part>01 80</part>
+    </rom>
+    <switches page_id="1" page_name="Switches" base="16" default="ff,ff,fb,01">
+        <DSW1/>
+        <dip name="Difficulty" bits="0,1" ids="Hardest,Hard,Easy,Normal"/>
+        <dip name="Game Mode" bits="2" ids="Multiple,Single"/>
+        <dip name="Multi Player Mode" bits="3" ids="Multi Player Off,Multi Player Off"/>
+        <dip name="Free Play" bits="8" ids="Yes,No"/>
+        <dip name="Coin A" bits="9,11" ids="1/6,1/5,1/4,1/3,1/2,3/1,2/1,1/1"/>
+        <dip name="Coin B" bits="12,14" ids="1/6,1/5,1/4,1/3,1/2,3/1,2/1,1/1"/>
+        <dip name="Cont. Coin" bits="15" ids="On,Normalage"/>
+        <DSW2/>
+        <dip name="Service Mode" bits="16" ids="On,Off"/>
+        <dip name="Flip Screen" bits="17" ids="On,Off"/>
+        <dip name="Demo Sounds" bits="18" ids="On,Off"/>
+        <dip name="Input Method" bits="23" ids="Steering Wheel,Joystick"/>
+        <DSW3/>
+        <dip name="Region" bits="24" ids="Japan,World"/>
+    </switches>
+    <buttons names="Accelerate,Brake,Turbo,Start,Coin,Core credits" default="A,B,X,Start,Select,-" count="3"/>
+</misterromdescription>
