@@ -36,6 +36,10 @@ That branch contains either the exact source for this core or a newer version th
 Covers
 - Letal Crash Race
 
+### JTTTNOSE
+Covers
+- Tail to Nose - Great Championship - Super Formula
+
 ### JTSVOLLE
 Covers
 - Super Volley

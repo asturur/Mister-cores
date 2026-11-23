@@ -1,0 +1,97 @@
+<!--          FPGA arcade hardware by Jotego
+
+              This core is available for hardware compatible with MiST and MiSTer
+              Other FPGA systems may be supported by the time you read this.
+              This work is not mantained by the MiSTer project. Please contact the
+              core author for issues and updates.
+
+              (c) Jose Tejada, 2026. Please support this research
+              Patreon: https://patreon.com/jotego
+
+              The author does not endorse or participate in illegal distribution
+              of copyrighted material. This work can be used with compatible
+              software. This software can be homebrew projects or legally
+              obtained memory dumps of compatible games.
+
+              This file license is GNU GPLv2.
+              You can read the whole license file in
+              https://opensource.org/licenses/gpl-2.0.php
+
+-->
+
+<misterromdescription>
+    <about author="Andrea Bogazzi" webpage="https://patreon.com/jotego" twitter="@topapate" source="https://jotego/jtcores"/>
+    <rotation>vertical (cw)</rotation>
+    <name>Super Formula (Japan, set 1)</name>
+    <setname>sformula</setname>
+    <mameversion>0282</mameversion>
+    <year>1989</year>
+    <manufacturer>V-System Co.</manufacturer>
+    <players>1</players>
+    <rbf>jtttnose</rbf>
+    <joystick>2</joystick>
+    <region>World</region>
+    <rom index="0" zip="sformula.zip|tail2nos.zip|ym2608.zip" md5="None" address="0x30000000">
+        <!--  -->
+        <part>
+            00 00 00 00 </part>
+        <!-- maincpu - starts at 0x0 - length 0x40000 (18 bits) -->
+        <interleave output="16">
+            <part name="7.ic130" crc="73f0c91c" map="01"/>
+            <part name="4.ic129" crc="672bf690" map="10"/>
+        </interleave>
+        <interleave output="16">
+            <part name="v6.ic142" crc="069817a7" map="01"/>
+            <part name="v3.ic141" crc="e2e0abad" map="10"/>
+        </interleave>
+        <!-- USER1_START -->
+        <!-- user1 - starts at 0x40000 - length 0x80000 (19 bits) -->
+        <part name="a23.ic96" crc="d851cf04"/>
+        <!-- USER2_START -->
+        <!-- user2 - starts at 0xC0000 - length 0x140000 (21 bits) -->
+        <interleave output="16">
+            <part name="v8.ic120" crc="4fb6a43e" map="01"/>
+            <part name="v5.ic119" crc="a9fe15a1" map="10"/>
+        </interleave>
+        <part repeat="0x120000"> FF</part>
+        <!-- JTFRAME_BA1_START -->
+        <!-- chars - starts at 0x200000 - length 0x100000 (20 bits) -->
+        <part name="a24.ic34" crc="b1e9de43"/>
+        <part name="o1s.ic18" crc="e27a8eb4"/>
+        <part repeat="0x40000"> FF</part>
+        <!-- JTFRAME_BA2_START -->
+        <!-- sprites - starts at 0x300000 - length 0x100000 (20 bits) -->
+        <part name="oj1.ic93" crc="39c36b35"/>
+        <part name="oj2.ic79" crc="77ccaea2"/>
+        <part repeat="0x80000"> FF</part>
+        <!-- JTFRAME_BA3_START -->
+        <!-- audiocpu - starts at 0x400000 - length 0x20000 (17 bits) -->
+        <part name="v2.ic125" crc="920d8920"/>
+        <part repeat="0x8000"> FF</part>
+        <part name="v1.ic137" crc="bf35c1a4"/>
+        <!-- PCM_START -->
+        <!-- ymsnd - starts at 0x420000 - length 0x20000 (17 bits) -->
+        <part name="osb.ic127" crc="d49ab2f5"/>
+        <!-- JTFRAME_PROM_START -->
+        <!-- rhythm - starts at 0x440000 - length 0x2000 (13 bits) -->
+        <part name="ym2608_adpcm_rom.bin" crc="23c9e0d8" length="0x2000"/>
+        <!-- Total 0x442000 bytes - 4360 kBytes -->
+    </rom>
+    <!-- Vertical screen. -->
+    <rom index="1">
+        <part>01 80</part>
+    </rom>
+    <switches page_id="1" page_name="Switches" base="24" default="00,50">
+        <DSW/>
+        <dip name="Coin A" bits="0,3" ids="1/1,1/2,1/3,1/4,1/5,1/6,2/1,3/1,4/1,5/1,2/3,6/4,4/3,5/6,4/5,2/3"/>
+        <dip name="Coin B" bits="4,7" ids="1/1,1/2,1/3,1/4,1/5,1/6,2/1,3/1,4/1,5/1,2/3,6/4,4/3,5/6,4/5,2/3"/>
+        <dip name="Difficulty" bits="8,9" ids="Normal,Easy,Hard,Hardest"/>
+        <dip name="Demo Sounds" bits="10" ids="On,Off"/>
+        <dip name="Service Mode" bits="11" ids="Off,On"/>
+        <dip name="Game Mode" bits="12" ids="Multiple,Single"/>
+        <dip name="Flip Screen" bits="13" ids="Off,On"/>
+        <dip name="Control Panel" bits="14" ids="Original,Standard"/>
+        <dip name="Country" bits="15" ids="Domestic,Overseas"/>
+    </switches>
+    <buttons names="Accelerate,Brake,Start,Coin,Core credits,Test,Service" default="A,B,Start,Select,L2,R2,L3" count="2"/>
+</misterromdescription>
